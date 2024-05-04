@@ -3,6 +3,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 // OBJECTS
 
+
 // RENDERER
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight);
@@ -18,6 +19,10 @@ const camera = new THREE.PerspectiveCamera(
 );
 camera.position.z = 5;
 
+// LIGHT
+const ambientLight = new THREE.AmbientLight(0xFFFFFF);
+scene.add(ambientLight);
+
 // CONTROLS
 const controls = new OrbitControls( 
     camera, renderer.domElement 
@@ -25,7 +30,7 @@ const controls = new OrbitControls(
 
 // SPHERE
 const geometry = new THREE.SphereGeometry( 2.5 );
-const material = new THREE.MeshBasicMaterial( { color:0xFFFFFF } );
+const material = new THREE.MeshBasicMaterial( { color:0x554455 } );
 const sphere = new THREE.Mesh( geometry, material );
 scene.add( sphere );
 
@@ -37,7 +42,7 @@ function animate() {
     sphere.rotation.x += 0.01;
     sphere.rotation.y += 0.01;
     renderer.render( scene, camera );
-} 
+}
 renderer.setAnimationLoop(animate);
 
 window.addEventListener( 'resize', function() {
@@ -54,11 +59,10 @@ function onMouseDown ( event ) {
     );
 
     raycaster.setFromCamera( pointer, camera );
-    const intersects = raycaster.intersectObjects( scene.children );
+    const intersects = raycaster.intersectObjects( scene.children, false );
     if( intersects.length > 0 ) {
         const intersect = intersects[0];
-        camera.position.copy(intersect.point);
-        intersect.object.material.color = new THREE.Color(0xaa6633);
+        intersect.object.material.color = new THREE.Color( 0xaa6633 );
     }
 }
 document.addEventListener( 'mousedown', onMouseDown );
