@@ -36,7 +36,7 @@ document.body.appendChild( renderer.domElement );
 
 // SCENE
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0xFF00FF);
+scene.background = new THREE.Color(0xFFFFFF);
 
 // CAMERA
 const camera = new THREE.PerspectiveCamera(
@@ -63,9 +63,9 @@ const earthGeometry = new THREE.SphereGeometry( 0.5, 32, 32 );
 const earthMaterial = new THREE.MeshPhongMaterial(
      {  
         wireframe: false,
-        map: new THREE.TextureLoader().load('texture/EarthMap.jpg'),
-        bumpMap: new THREE.TextureLoader().load('texture/EarthBump.jpg'),
-        bumpScale: 0.01
+        map: new THREE.TextureLoader().load('texture/minion.jpg'),
+        //bumpMap: new THREE.TextureLoader().load('texture/EarthBump.jpg'),
+        //bumpScale: 0.01
      } );
 const earthMesh = new THREE.Mesh( earthGeometry, earthMaterial );
 scene.add( earthMesh );
