@@ -67,7 +67,8 @@ const earthMaterial = new THREE.MeshPhongMaterial(
         //bumpMap: new THREE.TextureLoader().load('texture/EarthBump.jpg'),
         //bumpScale: 0.01
      } );
-const earthMesh = new THREE.Mesh( earthGeometry, earthMaterial );
+const tempMaterial = new THREE.MeshBasicMaterial( { color: 0xFF0000, wireframe: true} );
+const earthMesh = new THREE.Mesh( earthGeometry, tempMaterial );
 scene.add( earthMesh );
 
 function animate() {
